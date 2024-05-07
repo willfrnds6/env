@@ -33,20 +33,22 @@ public class Env {
         // Generate pattern
         Pattern pattern = Pattern.compile(VARIABLE_REGEX);
 
+        // Initialize some variables here for better memory management
+        String propertyFileValue;
+        Matcher matcher;
+        String currentDetectedGroup;
+        String envValue;
+        String propertyValueToCheck;
+        String[] splitVal;
+        String propertyToSet;
+
         // Loop on all property
-        properties.forEach((key, value) -> {
+        for (Map.Entry<Object, Object> propertiesEntrySet : properties.entrySet()) {
             // Get value present in the property file
-            String propertyFileValue = value.toString();
+            propertyFileValue = propertiesEntrySet.getValue().toString();
 
             // Check if the value is supposed to be overwritten by env variable
-            Matcher matcher = pattern.matcher(propertyFileValue);
-
-            // Initialize some variables here for better memory management
-            String currentDetectedGroup;
-            String envValue;
-            String propertyValueToCheck;
-            String[] splitVal;
-            String propertyToSet;
+            matcher = pattern.matcher(propertyFileValue);
 
             // Loop on all match found
             while (matcher.find()) {
@@ -91,9 +93,9 @@ public class Env {
 
                 // Overwrite match
                 propertyFileValue = propertyFileValue.replace(currentDetectedGroup, propertyToSet);
-                properties.setProperty(key.toString(), propertyFileValue);
+                properties.setProperty(propertiesEntrySet.getKey().toString(), propertyFileValue);
             }
-        });
+        }
 
         return properties;
     }
