@@ -18,6 +18,29 @@ your.property=${ENV_VARIABLE}
 ```
 
 
+
+## Installation
+
+Compile the lib using maven commands
+```shell
+mvn clean install
+```
+
+Install the jar 
+```shell
+mvn install:install-file -Dfile=env.jar -DgroupId=fr.fernandes.will.env -DartifactId=env -Dversion=1.0-SNAPSHOT -Dpackaging=jar
+```
+
+Add this in your pom
+
+```xml
+<dependecy>
+    <groupId>fr.fernandes.will</groupId>
+    <artifactId>env</artifactId>
+    <version>1.1-SNAPSHOT</version>
+</dependecy>
+```
+
 ## Utilisation
 There it is an example of utilisation
 
