@@ -1,0 +1,9 @@
+<archetype>
+  <id>env</id>
+  <sources>
+    <source>src/fr.fernandes.will.utils.env.main/java/App.java</source>
+  </sources>
+  <testSources>
+    <source>src/test/java/AppTest.java</source>
+  </testSources>
+</archetype>
