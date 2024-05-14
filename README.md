@@ -28,7 +28,7 @@ mvn clean install
 
 Install the jar 
 ```shell
-mvn install:install-file -Dfile=env-1.2.jar -DgroupId=fr.fernandes.will.env -DartifactId=env -Dversion=1.2 -Dpackaging=jar
+mvn install:install-file -Dfile=env-1.3.jar -DgroupId=fr.fernandes.will.env -DartifactId=env -Dversion=1.3 -Dpackaging=jar
 ```
 
 Add this in your pom
@@ -37,7 +37,7 @@ Add this in your pom
 <dependecy>
     <groupId>fr.fernandes.will</groupId>
     <artifactId>env</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
 </dependecy>
 ```
 
