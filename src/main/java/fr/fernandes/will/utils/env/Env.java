@@ -41,6 +41,7 @@ public class Env {
         String propertyValueToCheck;
         String[] splitVal;
         String propertyToSet;
+        boolean isLink = false;
 
         // Loop on all property
         for (Map.Entry<Object, Object> propertiesEntrySet : properties.entrySet()) {
@@ -57,6 +58,14 @@ public class Env {
                 propertyValueToCheck = currentDetectedGroup
                         .replace("${", Constant.EMPTY_STRING)
                         .replace("}", Constant.EMPTY_STRING);
+
+                // Check if there is a link
+                if (propertyValueToCheck.contains("https://") || propertyValueToCheck.contains("http://")) {
+                    isLink = true;
+                    propertyValueToCheck = propertyValueToCheck
+                            .replace("https://", Constant.EMPTY_STRING)
+                            .replace("http://", Constant.EMPTY_STRING);
+                }
 
                 // Check if a default value is provided in the property file
                 if (!propertyValueToCheck.contains(":")) {
@@ -93,6 +102,13 @@ public class Env {
 
                 // Overwrite match
                 propertyFileValue = propertyFileValue.replace(currentDetectedGroup, propertyToSet);
+
+                // Add https
+                if (isLink) {
+                    propertyFileValue = "https://" + propertyFileValue;
+                    isLink = false;
+                }
+
                 properties.setProperty(propertiesEntrySet.getKey().toString(), propertyFileValue);
             }
         }
