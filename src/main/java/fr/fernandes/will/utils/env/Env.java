@@ -11,7 +11,7 @@ import fr.fernandes.will.utils.env.exception.NotFoundException;
 
 public class Env {
     private static final Map<String, String> ENV = System.getenv();
-    private static final String VARIABLE_REGEX = "(\\$\\{(?:[A-Z_]+)(?:\\:)?(?:[A-Za-z0-9-_\\.]+)?\\})";
+    private static final String VARIABLE_REGEX = "(\\$\\{(?:[A-Z_]+)(?:\\:)?(?:[A-Za-z0-9-@#\\/_\\.:]+)?\\})";
     private final InputStream propertyFile;
 
     public Env(InputStream propertyFile) {
